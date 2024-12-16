@@ -1,8 +1,9 @@
 import { Component } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Contact from './pages/Contact'
+import Error from './pages/Error'
 import NavBar from './components/NavBar'
-import Cart from './components/Cart'
-import HeroSection from './components/HeroSection'
-import Data from './data.json'
 
 export default class App extends Component {
 
@@ -23,18 +24,14 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='w-full '>
-        <NavBar />
-<HeroSection />
-         {/* <Cart />  */}
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-         {Data?.map((item, index:number) => {
-          return(
-            <Cart item={item} key={index} />
-          )
-         })}
-         </div>
-      </div>
+     <BrowserRouter>
+     <NavBar />
+     <Routes>
+<Route  path='/' element={<Home />} />
+<Route  path='/contact' element={<Contact />} />
+<Route  path='*' element={<Error />} />
+     </Routes>
+     </BrowserRouter>
     )
   }
 }
