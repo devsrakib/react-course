@@ -19,10 +19,5 @@
         "age": 28,
         "city": "Tokyo"
 
-    },
-    {
-        "name": "Mike",
-        "age": 32,
-        "city": "Sydney"
     }
 ]

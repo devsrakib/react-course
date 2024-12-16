@@ -1,19 +1,40 @@
-import Card2 from './components/Card2'
+import { Component } from 'react'
+import NavBar from './components/NavBar'
 import Cart from './components/Cart'
+import HeroSection from './components/HeroSection'
 import Data from './data.json'
 
-function App() {
-  const items = []
-  for (let i = 0; i < Data.length; i++) {
-    items.push(<Cart name={Data[i].name} age={Data[i].age} city={Data[i].city} />)
+export default class App extends Component {
+
+  constructor(props: Record<string, unknown>) {
+    super(props)
+    this.state = {
+      isLoggedIn: true,
+      inputValue: ''
+    }
   }
-  return (
-<div className="flex flex-wrap gap-4 align-center w-[95%] mx-auto">
-  {items}
-  <Card2  name="John Doe" />
-</div>
 
-  )
+  handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      inputValue: e.target.value
+    })
+    
+  }
+
+  render() {
+    return (
+      <div className='w-full '>
+        <NavBar />
+<HeroSection />
+         {/* <Cart />  */}
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+         {Data?.map((item, index:number) => {
+          return(
+            <Cart item={item} key={index} />
+          )
+         })}
+         </div>
+      </div>
+    )
+  }
 }
-
-export default App
